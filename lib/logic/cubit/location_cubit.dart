@@ -8,9 +8,19 @@ import 'package:weather_app/logic/repositories/geolocater_repo.dart';
 part 'location_state.dart';
 
 class LocationCubit extends Cubit<LocationState> {
-  final Position position;
+  StreamSubscription positionStreamSubscription;
 
-  LocationCubit({this.position}) : super(LocationInitial());
+  LocationCubit() : super(LocationInitial());
 
-  void getPosition(pos) => emit(LocationEnabled(position: pos));
+  void getPosition() async {
+    await determinePosition()
+        .then((res) => emit(LocationEnabled(position: res)))
+        .catchError((err) => print(err));
+  }
+
+  @override
+  Future<void> close() {
+    positionStreamSubscription.cancel();
+    return super.close();
+  }
 }

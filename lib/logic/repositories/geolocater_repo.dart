@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:geolocator/geolocator.dart';
 
 /// Determine the current position of the device.
@@ -39,7 +41,5 @@ Future<Position> determinePosition() async {
   // When we reach here, permissions are granted and we can
   // continue accessing the position of the device.
   final Position position = await Geolocator.getCurrentPosition();
-
-  print(position);
   return position;
 }

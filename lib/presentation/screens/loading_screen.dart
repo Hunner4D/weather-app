@@ -9,18 +9,6 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  void getLocation() {
-    try {
-      BlocProvider.of<LocationCubit>(context).getPosition();
-    } catch (err) {
-      print(err);
-    } finally {
-      Navigator.of(context).pushNamed(
-        '/city',
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,12 +21,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
               if (state is LocationEnabled) {
                 return Text('${state.position}');
               } else {
-                return Text('enable to proceed');
+                return Text('Loading');
               }
             }),
-            ElevatedButton(
-              onPressed: () => getLocation(),
-              child: Text('Get Location'),
+            TextButton(
+              child: Text('Getting Weather Data'),
+              onPressed: () =>
+                  print(BlocProvider.of<LocationCubit>(context).state),
             ),
           ],
         ),

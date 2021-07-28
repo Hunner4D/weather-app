@@ -17,11 +17,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LocationCubit(),
-      child: MaterialApp(
-        theme: ThemeData.dark(),
-        onGenerateRoute: appRouter.onGenerateRoute,
-      ),
-    );
+        create: (context) => LocationCubit(),
+        child: BlocBuilder<LocationCubit, LocationState>(
+          builder: (_, state) {
+            return MaterialApp(
+              theme: ThemeData.dark(),
+              onGenerateRoute: (state is LocationEnabled) ? appRouter.enabled : appRouter.disabled,
+            );
+          },
+        ));
   }
 }

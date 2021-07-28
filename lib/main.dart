@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           builder: (_, state) {
             return MaterialApp(
               theme: ThemeData.dark(),
-              onGenerateRoute: (state is LocationEnabled) ? appRouter.enabled : appRouter.disabled,
+              onGenerateRoute: appRouter.onGenerateRoute,
             );
           },
         ));

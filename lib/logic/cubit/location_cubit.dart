@@ -10,11 +10,6 @@ part 'location_state.dart';
 class LocationCubit extends Cubit<LocationState> {
   // StreamSubscription positionStreamSubscription;
 
-  // LocationCubit() : super(LocationInitial()) {
-  //   determinePosition()
-  //       .then((res) => emit(LocationEnabled(position: res)))
-  //       .catchError((err) => emit(LocationEnabled(position: err)));
-  // }
   LocationCubit() : super(LocationInitial()) {
     determinePosition()
         .then((res) => emit(LocationEnabled(position: res)))

@@ -7,20 +7,13 @@ import 'package:weather_app/presentation/screens/loading_screen.dart';
 import 'package:weather_app/presentation/screens/location_screen.dart';
 
 class AppRouter {
-  Route enabled(RouteSettings settings) {
+  Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (_) => LoadingScreen(),
+          builder: (_) => LoadingScreen(context: _),
         );
-      default:
-        return null;
-    }
-  }
-
-  Route disabled(RouteSettings settings) {
-    switch (settings.name) {
-      case '/':
+      case '/location':
         return MaterialPageRoute(
           builder: (_) => LocationScreen(),
         );
